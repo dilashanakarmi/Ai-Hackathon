@@ -1,14 +1,19 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Tools from './pages/Tools';
-import Upload from './pages/Upload';
+import Upload from './Upload';
 
 const App = () => (
   <div>
-    <Navbar />
+    <div className="page-container">
+  <Navbar />
+  <div className="upload-wrapper">
+    <Upload />
+  </div>
+  </div>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
