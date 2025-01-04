@@ -1,46 +1,62 @@
 body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4; /* Optional: subtle background color */
+  background-color: #f4f4f4;
 }
 
-/* Keep the navigation bar at the top */
-.page-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+.section {
+  padding: 4rem 0;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
 }
 
-/* Center the upload container within its wrapper */
-.upload-wrapper {
-  flex: 1;
+.navbar {
   display: flex;
-  align-items: center;
   justify-content: center;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  background-color: #333;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.navbar-list {
+  display: flex; /* Display the list items in a horizontal row */
+  list-style: none; /* Remove default list styling */
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem; /* Adjust the gap between list items */
+}
+.navbar .navbar-link {
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
 }
 
-/* Upload container styles */
+.navbar .navbar-link:hover {
+  color: #f9f58b;
+}
+
 .upload-container {
   padding: 2rem;
   text-align: center;
   max-width: 600px;
+  margin: 0 auto;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.upload-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.upload-description {
-  margin-bottom: 1.5rem;
+  background-color: #fff;
 }
 
 .upload-input {
-  display: none; /* Hide the input but keep it functional */
+  display: none;
 }
 
 .upload-label {
@@ -58,47 +74,3 @@ body {
 .upload-label:hover {
   background-color: #0056b3;
 }
-
-.upload-icon {
-  font-size: 1.5rem;
-}
-
-.file-details {
-  margin-top: 1.5rem;
-  text-align: left;
-}
-/* Center the navbar and space out items */
-.navbar {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem; /* Adjust the gap between items */
-  padding: 1.5rem 2rem; /* Add padding around the navbar */
-  background-color: #333; /* Navbar background color */
-  border-radius: 0px; /* Rounded edges */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
-}
-
-.navbar a {
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-}
-.navbar-list {
-  display: flex;
-  gap: 7rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar a:hover {
-    color: #f9f58b; /* Highlight color on hover */
-  opacity: 0.9;
-}
-
-.navbar .active {
-  background-color: #f3f4f6; /* Background color for active menu item */
-}
-
-  
