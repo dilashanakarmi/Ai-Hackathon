@@ -85,7 +85,7 @@ const App = () => {
         </div>
       </div>
 
-      <div id="about" className="section" data-aos="fade-right">
+      <div id="about" className="section" data-aos="fade-up">
         <div style={{ padding: '2rem', textAlign: 'center' }}>
           <h1>About</h1>
           <p>
@@ -115,43 +115,47 @@ const App = () => {
       </div>
 
       <div id="upload" className="section" data-aos="fade-down">
-        <div className="upload-container" style={{ textAlign: 'center', padding: '2rem' }}>
-          <h1 className="upload-title">Upload Picture</h1>
-          <p className="upload-description">
-            Select a picture of a Thangka painting to begin the authentication process.
-          </p>
-          <label htmlFor="file-upload" className="upload-label" style={{ display: 'inline-block', marginTop: '1rem' }}>
-            <span style={{ backgroundColor: '#333', color: '#fff', padding: '0.5rem 1rem', borderRadius: '5px', cursor: 'pointer' }}>
-              Choose a file
-            </span>
-          </label>
-          <input
-            id="file-upload"
-            type="file"
-            accept="image/*"
-            className="upload-input"
-            style={{ display: 'none' }}
-            onChange={handleImageUpload}
-          />
-          {image && (
-            <div className="image-preview-container">
-              <img src={image} alt="Uploaded Preview" className="uploaded-image" />
-              <button onClick={removeImage} className="remove-button">
-                Remove
-              </button>
-            </div>
-          )}
-          {image && (
-            <button className="submit-button">
-              Submit to Verify
-            </button>
-          )}
-          <div className="loading-container">
-            <div className="loading-bar"></div>
-          </div>
-        </div>
+  <div className="upload-container" style={{ textAlign: 'center', padding: '2rem' }}>
+    <h1 className="upload-title">Upload Picture</h1>
+    <p className="upload-description">
+      Select a picture of a Thangka painting to begin the authentication process.
+    </p>
+    <label htmlFor="file-upload" className="upload-label">
+      Choose a file
+    </label>
+    <input
+      id="file-upload"
+      type="file"
+      accept="image/*"
+      className="upload-input"
+      onChange={handleImageUpload}
+    />
+
+    {image && (
+      <div className="image-preview-container">
+        <img src={image} alt="Uploaded Preview" className="uploaded-image" />
       </div>
+    )}
+    {image && (
+      <div className="button-container">
+        <button className="submit-button">Submit to Verify</button>
+        <button onClick={removeImage} className="remove-button">Remove</button>
+      </div>
+    )}
+  </div>
+</div>
+
+{/* Footer */}
+<footer className="footer">
+  <div className="footer-content">
+    <h3>Contact Us</h3>
+    <p>Email: info@arthenticai.com</p>
+    <p>Phone: +123-456-7890</p>
+    <p>Address: 123 Art Street, Kathmandu, Nepal</p>
+  </div>
+</footer>
     </div>
+    
   );
 };
 

@@ -10,12 +10,10 @@ body {
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-
 .section {
   min-height: 100vh; /* Ensure each section takes at least the full height of the viewport */
   padding: 4rem 0;
   background-color: #f9f9f9; /* Light background color for contrast */
-  border-bottom: 1px solid #ddd;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -37,11 +35,10 @@ body {
   justify-content: space-between; /* Adjust the spacing between logo and menu */
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #333;
-  position: sticky;
+  background-color: #f9f9f9;
+
   top: 0;
   z-index: 10;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -52,6 +49,13 @@ body {
 .logo-image {
   height: 40px;
   width: auto;
+}
+
+/* Heading styles */
+h1, h2 {
+  font-size: 3rem; /* Increased size for main headings */
+  font-weight: bold;
+  margin-bottom: 1.5rem;
 }
 
 .navbar-list {
@@ -65,7 +69,7 @@ body {
 .navbar .navbar-link {
   background: none;
   border: none;
-  color: #fff;
+  color: #333;
   font-weight: bold;
   cursor: pointer;
   text-transform: uppercase;
@@ -103,6 +107,7 @@ body {
 .upload-label span {
   background-color: #333;
   color: #fff;
+  margin-top: 3rem;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   cursor: pointer;
@@ -120,10 +125,16 @@ body {
 }
 
 .uploaded-image {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 0px;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem; /* Ensure buttons are placed side by side */
+  margin-top: 4rem;
 }
 
 .submit-button {
@@ -133,52 +144,91 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 1rem;
 }
 
 .submit-button:hover {
   background-color: #444;
 }
 
-.loading-container {
-  margin-top: 2rem;
-  width: 100%;
-  max-width: 600px;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  height: 10px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-
-.loading-bar {
-  width: 0;
-  height: 100%;
-  background-color: #4caf50;
-  animation: loading 3s ease-in-out forwards;
-}
-
-@keyframes loading {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
 .remove-button {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   background-color: #e74c3c;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
-  margin-left: 1rem;
 }
 
 .remove-button:hover {
   background-color: #c0392b;
+}
+/* Hide the default file input button */
+.upload-input {
+  display: none;
+}
+
+/* Style the label that will act as the file upload button */
+.upload-label {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: #333;
+  color: #fff;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the custom file upload button */
+.upload-label:hover {
+  background-color: #444;
+}
+
+/* Style for the file input button when file is selected */
+.upload-input:focus + .upload-label {
+  outline: none;
+  border: 2px solid #008cba; /* Optional focus style */
+}
+
+.upload-input:focus + .upload-label span {
+  background-color: #008cba; /* Optional background change when focused */
+}
+
+/* Styling for when the file has been uploaded */
+.upload-input:valid + .upload-label {
+  background-color: #28a745; /* Green color after successful file selection */
+  color: #fff;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 0.3rem 0;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.footer .footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.footer h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer p {
+  font-size: 1rem;
+  margin: 0.1rem 0;
+}
+
+.footer p a {
+  color: #f9f58b;
+  text-decoration: none;
+}
+
+.footer p a:hover {
+  text-decoration: underline;
 }
