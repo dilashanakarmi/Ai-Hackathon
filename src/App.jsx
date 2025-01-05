@@ -4,14 +4,35 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const App = () => {
-  const [image, setImage] = useState(null);  // State to hold the uploaded image
+  const [image, setImage] = useState(null); // State to hold the uploaded image
 
   useEffect(() => {
+    // Initialize AOS animations
     AOS.init({
-      duration: 1300, // Animation duration in ms
-      once: false, // Whether animation should happen only once
-      mirror: true, // Whether elements animate out while scrolling past them
+      duration: 1300,
+      once: false,
+      mirror: true,
     });
+
+    // Handle active navbar link based on scroll position
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'tools', 'upload'];
+      sections.forEach((section) => {
+        const element = document.getElementById(section);
+        const link = document.querySelector(`[onclick*="${section}"]`);
+        if (
+          element.offsetTop <= window.scrollY &&
+          element.offsetTop + element.offsetHeight > window.scrollY
+        ) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (id) => {
@@ -23,9 +44,10 @@ const App = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result); // Set the image to the state
+        console.log(reader.result); // Debugging the base64 image data
+        setImage(reader.result);
       };
-      reader.readAsDataURL(file); // Read the uploaded file
+      reader.readAsDataURL(file);
     }
   };
 
@@ -38,7 +60,7 @@ const App = () => {
       {/* Navbar */}
       <nav className="navbar">
         <div className="logo">
-          <img src="/path-to-your-logo.png" alt="Logo" className="logo-image" />
+          <img src="/logo.png" alt="Logo" className="logo-image" />
         </div>
         <ul className="navbar-list">
           <li>
@@ -66,24 +88,35 @@ const App = () => {
 
       {/* Sections */}
       <div id="home" className="section" data-aos="fade-up">
-        <div style={{ textAlign: 'center', padding: '2rem' }}>
-          <h1>Arthentic AI</h1>
-          <p>Identify authentic artworks with our AI-powered tool.</p>
-          <button
-            onClick={() => scrollToSection('upload')}
-            style={{
-              padding: '1rem 2rem',
-              backgroundColor: '#333',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-            }}
-          >
-            Try Now
-          </button>
-        </div>
-      </div>
+  <div style={{ textAlign: 'center', padding: '2rem' }}>
+  {/* Add the animated logo */}
+  <img
+  src="/animated.svg"
+  alt="Logo"
+  className="animated-logo"
+  style={{
+    maxWidth: '300px', // Adjust size as needed
+    height: 'auto',
+    marginBottom: '1.5rem'
+  }}
+/>
+    <h1>Arthentic AI</h1>
+    <p>Authenticating Local Handicrafts: Preserving Culture with AI</p>
+    <button
+      onClick={() => scrollToSection('upload')}
+      style={{
+        padding: '1rem 1rem',
+        backgroundColor: '#333',
+        color: '#fff',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+      }}
+    >
+      Try Now
+    </button>
+  </div>
+</div>
 
       <div id="about" className="section" data-aos="fade-up">
         <div style={{ padding: '2rem', textAlign: 'center' }}>
@@ -96,66 +129,73 @@ const App = () => {
       </div>
 
       <div id="tools" className="section" data-aos="fade-up">
-        <div style={{ padding: '2rem', textAlign: 'center' }}>
-          <h1>Tools</h1>
-          <p>Explore the tools we use to power our AI model and enhance the authentication process.</p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <div style={cardStyle}>
-              <h3 style={{ marginBottom: '1rem' }}>Image Recognition</h3>
-              <p>Analyzes high-resolution images of handicrafts to verify authenticity.</p>
-              <p>Detects subtle differences in materials, patterns, and designs that are invisible to the human eye.</p>
-            </div>
-            <div style={cardStyle}>
-              <h3 style={{ marginBottom: '1rem' }}>Pattern Analysis</h3>
-              <p>Uses machine learning to identify unique artistic styles and techniques.</p>
-              <p>Compares uploaded images with a database of genuine and counterfeit examples.</p>
-            </div>
-          </div>
-        </div>
+  <div style={{ padding: '2rem', textAlign: 'center' }}>
+    <h1>Tools</h1>
+    <p>Explore the tools we use to power our AI model and enhance the authentication process.</p>
+    <div className="card-container">
+      <div style={cardStyle}>
+        <h3 style={{ marginBottom: '1rem' }}>Image Recognition</h3>
+        <p>Analyzes high-resolution images of handicrafts to verify authenticity.</p>
+        <p>Detects subtle differences in materials, patterns, and designs that are invisible to the human eye.</p>
       </div>
-
-      <div id="upload" className="section" data-aos="fade-down">
-  <div className="upload-container" style={{ textAlign: 'center', padding: '2rem' }}>
-    <h1 className="upload-title">Upload Picture</h1>
-    <p className="upload-description">
-      Select a picture of a Thangka painting to begin the authentication process.
-    </p>
-    <label htmlFor="file-upload" className="upload-label">
-      Choose a file
-    </label>
-    <input
-      id="file-upload"
-      type="file"
-      accept="image/*"
-      className="upload-input"
-      onChange={handleImageUpload}
-    />
-
-    {image && (
-      <div className="image-preview-container">
-        <img src={image} alt="Uploaded Preview" className="uploaded-image" />
+      <div style={cardStyle}>
+        <h3 style={{ marginBottom: '1rem' }}>Pattern Analysis</h3>
+        <p>Uses machine learning to identify unique artistic styles and techniques.</p>
+        <p>Compares uploaded images with a database of genuine and counterfeit examples.</p>
       </div>
-    )}
-    {image && (
-      <div className="button-container">
-        <button className="submit-button">Submit to Verify</button>
-        <button onClick={removeImage} className="remove-button">Remove</button>
+      <div style={cardStyle}>
+        <h3 style={{ marginBottom: '1rem' }}>Customer Uploads High-Quality Photo of the Art</h3>
+        <p>Users upload a clear, high-resolution image of their artwork. Our AI processes the image to extract intricate details and ensure accurate analysis.</p>
       </div>
-    )}
+      <div style={cardStyle}>
+        <h3 style={{ marginBottom: '1rem' }}>Real-Time Verification: Handmade or Machine Made</h3>
+        <p>The AI evaluates unique characteristics like brush strokes and material patterns in real-time, determining whether the artwork is handcrafted or machine-produced with precision.</p>
+      </div>
+    </div>
   </div>
 </div>
 
-{/* Footer */}
-<footer className="footer">
-  <div className="footer-content">
-    <h3>Contact Us</h3>
-    <p>Email: info@arthenticai.com</p>
-    <p>Phone: +123-456-7890</p>
-    <p>Address: 123 Art Street, Kathmandu, Nepal</p>
-  </div>
-</footer>
+      <div id="upload" className="section" data-aos="fade-down">
+        <div className="upload-container" style={{ textAlign: 'center', padding: '2rem' }}>
+          <h1 className="upload-title">Upload Picture</h1>
+          <p className="upload-description">
+            Select a picture of a Thangka painting to begin the authentication process.
+          </p>
+          <label htmlFor="file-upload" className="upload-label">
+            Choose a file
+          </label>
+          <input
+            id="file-upload"
+            type="file"
+            accept="image/*"
+            className="upload-input"
+            onChange={handleImageUpload}
+          />
+
+          {image && (
+            <div className="image-preview-container">
+              <img src={image} alt="Uploaded Preview" className="uploaded-image" />
+            </div>
+          )}
+          {image && (
+            <div className="button-container">
+              <button className="submit-button">Submit to Verify</button>
+              <button onClick={removeImage} className="remove-button">Remove</button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-content">
+          <h3>Contact Us</h3>
+          <p>Email: info@arthenticai.com</p>
+          <p>Phone: +123-456-7890</p>
+          <p>Address: 123 Art Street, Kathmandu, Nepal</p>
+        </div>
+      </footer>
     </div>
-    
   );
 };
 

@@ -12,7 +12,7 @@ body {
 
 .section {
   min-height: 100vh; /* Ensure each section takes at least the full height of the viewport */
-  padding: 4rem 0;
+  padding: 0rem 0;
   background-color: #f9f9f9; /* Light background color for contrast */
   text-align: center;
   display: flex;
@@ -21,12 +21,13 @@ body {
   justify-content: center;
   position: relative; /* To ensure AOS animations work as expected */}
 
-#about, #upload, #tools {
+#home,#about, #upload, #tools {
   display: flex;
+  margin-top: -3rem;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 
@@ -36,18 +37,18 @@ body {
   align-items: center;
   padding: 1rem 2rem;
   background-color: #f9f9f9;
-
   top: 0;
   z-index: 10;
 }
 
 .logo {
   display: flex;
-  gap: 1rem; /* Reduced gap */
+  align-items: center;
+  gap: 2rem; /* Reduced gap */
 }
 
 .logo-image {
-  height: 40px;
+  max-height: 100px;
   width: auto;
 }
 
@@ -55,7 +56,8 @@ body {
 h1, h2 {
   font-size: 3rem; /* Increased size for main headings */
   font-weight: bold;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  margin-top: -3rem;
 }
 
 .navbar-list {
@@ -76,6 +78,12 @@ h1, h2 {
   transition: color 0.3s ease;
 }
 
+.navbar-link.active {
+  color: #f9f58b;
+  border-bottom: 2px solid #f9f58b; /* Optional underline */
+}
+
+
 .navbar .navbar-link:hover {
   color: #f9f58b;
 }
@@ -83,6 +91,15 @@ h1, h2 {
 .navbar .navbar-link:focus {
   outline: 2px solid #f9f58b;
 }
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; /* Space between cards */
+  justify-content: center;
+  align-items: stretch;
+}
+
 
 .upload-container {
   display: flex;
@@ -200,13 +217,56 @@ h1, h2 {
   color: #fff;
 }
 
+/* For Digital Animation Effect */
+@keyframes digitalEffect {
+  0% {
+    opacity: 0;
+    transform: scale(0.5); /* Start small */
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1); /* Zoom to normal size */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Applying to the entire SVG logo */
+.animated-logo {
+  animation: digitalEffect 3s ease-in-out forwards; /* Animation lasts 3 seconds */
+  transform-origin: center;
+}
+
+.animated-logo path {
+  opacity: 0; /* Initially hide the parts of the logo */
+  animation: digitalFadeIn 0.5s forwards;
+  animation-delay: 0s; /* Control delay for each segment */
+}
+
+/* You can create delays for each segment */
+.animated-logo path:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.animated-logo path:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.animated-logo path:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Continue applying different delays to each path element of the SVG */
+
 /* Footer styles */
 .footer {
-  background-color: #333;
+  background-color: rgba(3,3,3,0.7);
   color: #fff;
-  padding: 0.3rem 0;
+  padding: 2rem 1rem;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 .footer .footer-content {
