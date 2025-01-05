@@ -60,7 +60,7 @@ const App = () => {
       {/* Navbar */}
       <nav className="navbar">
         <div className="logo">
-          <img src="/logo.png" alt="Logo" className="logo-image" />
+          <img src="/animated.svg" alt="Logo" className="logo-image" />
         </div>
         <ul className="navbar-list">
           <li>
@@ -87,7 +87,7 @@ const App = () => {
       </nav>
 
       {/* Sections */}
-      <div id="home" className="section" data-aos="fade-up">
+      <div id="home" className="section" data-aos="fade-in">
   <div style={{ textAlign: 'center', padding: '2rem' }}>
   {/* Add the animated logo */}
   <img
@@ -95,9 +95,9 @@ const App = () => {
   alt="Logo"
   className="animated-logo"
   style={{
-    maxWidth: '300px', // Adjust size as needed
+    maxWidth: '350px', // Adjust size as needed
     height: 'auto',
-    marginBottom: '1.5rem'
+    marginBottom: '-1rem'
   }}
 />
     <h1>Arthentic AI</h1>
@@ -118,7 +118,7 @@ const App = () => {
   </div>
 </div>
 
-      <div id="about" className="section" data-aos="fade-up">
+      <div id="about" className="section" data-aos="fade-down">
         <div style={{ padding: '2rem', textAlign: 'center' }}>
           <h1>About</h1>
           <p>
@@ -162,15 +162,18 @@ const App = () => {
             Select a picture of a Thangka painting to begin the authentication process.
           </p>
           <label htmlFor="file-upload" className="upload-label">
-            Choose a file
+            Choose an Image
           </label>
-          <input
-            id="file-upload"
-            type="file"
-            accept="image/*"
-            className="upload-input"
-            onChange={handleImageUpload}
-          />
+
+    {!image && (
+      <input
+        id="file-upload"
+        type="file"
+        accept="image/*"
+        className="upload-input"
+        onChange={handleImageUpload}
+      />
+    )}
 
           {image && (
             <div className="image-preview-container">
